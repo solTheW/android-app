@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toogle=new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toogle);
         toogle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
