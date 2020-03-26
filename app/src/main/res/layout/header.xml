@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:background="@color/common_google_signin_btn_text_light_focused"
+    android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+            android:src="@drawable/grumpy_cat"
+            app:civ_border_color="#C8832B"
+            app:civ_border_width="6dp" />
+
+    <TextView
+        android:id="@+id/profilePicName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilePic"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="38dp"
+        android:gravity="center"
+        android:text="Tu bedzie nazwa uzytkownika"
+        android:textColor="#fff"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+</LinearLayout>
