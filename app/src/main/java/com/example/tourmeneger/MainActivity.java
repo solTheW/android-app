@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(item.getItemId()){
             case R.id.chat:
                 Toast.makeText(this, "klikłeś chat", Toast.LENGTH_LONG).show();
+                openActivity();
                 break;
             case R.id.schedule:
                 Toast.makeText(this, "klikłeś schedule", Toast.LENGTH_LONG).show();
@@ -49,5 +51,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return false;
+    }
+
+    public void openActivity() {
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
     }
 }

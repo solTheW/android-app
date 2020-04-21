@@ -17,7 +17,7 @@
             app:civ_border_color="#C8832B"
             app:civ_border_width="6dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/profilePicName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +28,6 @@
         android:gravity="center"
         android:text="Tu bedzie nazwa uzytkownika"
         android:textColor="#fff"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 </LinearLayout>

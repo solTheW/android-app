@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "344100908608",
+    "firebase_url": "https://tour-meneger.firebaseio.com",
+    "project_id": "tour-meneger",
+    "storage_bucket": "tour-meneger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344100908608:android:5b4706eee61c3eef24f9a5",
+        "android_client_info": {
+          "package_name": "com.example.tourmeneger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344100908608-uctapl658bscbjt7burvndpl0pamaa9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBexr0pV4vhjvmBHUK7NvrxWZ2gyuPzQcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344100908608-uctapl658bscbjt7burvndpl0pamaa9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
