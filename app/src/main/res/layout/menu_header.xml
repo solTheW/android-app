@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="230dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/common_google_signin_btn_text_light_focused"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePic"
+            android:id="@+id/profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginLeft="20dp"
@@ -18,10 +21,10 @@
             app:civ_border_width="6dp" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/profilePicName"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profilePic"
+        android:layout_below="@+id/profile_image"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="38dp"
