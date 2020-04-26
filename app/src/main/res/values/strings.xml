@@ -2,4 +2,7 @@
     <string name="app_name">Tour Meneger</string>
     <string name="open" />
     <string name="close" />
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch(item.getItemId()){
             case R.id.chat:
-                Toast.makeText(this, "klikłeś chat", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
                 break;
             case R.id.schedule:
