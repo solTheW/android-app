@@ -94,13 +94,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.map:
                 Toast.makeText(this, "klikłeś map", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.options:
+            case R.id.profile:
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 break;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, StartActivity.class));
                 finish();
         }
+        drawerLayout.closeDrawers();
 
         return false;
     }
