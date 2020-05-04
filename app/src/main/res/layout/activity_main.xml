@@ -9,24 +9,28 @@
     android:background="@color/colorPrimary"
     android:id="@+id/drawer">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
-            android:background="@color/colorPrimaryDark"/>
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/toolbar"/>
 
-    </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/navigationView"
         app:menu="@menu/menu_item"
-        app:headerLayout="@layout/header"
+        app:headerLayout="@layout/menu_header"
         android:background="@color/colorPrimary"
         android:layout_gravity="start"/>
 
