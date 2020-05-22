@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
+//to jest test
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
