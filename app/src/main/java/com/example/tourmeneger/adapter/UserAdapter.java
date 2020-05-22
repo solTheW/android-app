@@ -20,12 +20,14 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
+    private boolean isChat;
     private Context mContext;
     private List<User> mUsers;
 
-    public UserAdapter(Context mContext, List<User> mUsers) {
+    public UserAdapter(Context mContext, List<User> mUsers, boolean isChat) {
         this.mUsers = mUsers;
         this.mContext = mContext;
+        this.isChat = isChat;
     }
 
     @NonNull

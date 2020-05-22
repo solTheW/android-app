@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, StartActivity.class));
-                finish();
+                startActivity(new Intent(MainActivity.this, StartActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                return true;
         }
         drawerLayout.closeDrawers();
 
