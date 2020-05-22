@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
