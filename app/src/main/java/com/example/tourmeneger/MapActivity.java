@@ -89,7 +89,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             @Override
                             public void onClick(View v) {
-                                boolean simulateRoute = true;
+                                boolean simulateRoute = false;
                                 NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                         .directionsRoute(currentRoute)
                                         .shouldSimulateRoute(simulateRoute)
