@@ -1,4 +1,4 @@
-package com.example.tourmeneger;
+package com.example.tourmeneger.model;
 
 public class Events {
     String EVENT,TIME,DATE,MONTH,YEAR;

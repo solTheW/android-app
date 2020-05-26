@@ -1,4 +1,4 @@
-package com.example.tourmeneger;
+package com.example.tourmeneger.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.tourmeneger.model.Events;
+import com.example.tourmeneger.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
