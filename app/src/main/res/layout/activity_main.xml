@@ -9,7 +9,7 @@
     android:background="@color/colorPrimary"
     android:id="@+id/drawer">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -19,11 +19,19 @@
             android:background="@color/colorPrimaryDark"
             android:id="@+id/toolbar"/>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <Button
+            android:id="@+id/btn_new_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp"
+            android:text="New Group" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    </RelativeLayout>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
