@@ -40,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
                     case 0:
                         tab.setText("Chats");
                         break;
+
                     case 1:
                         tab.setText("Users");
                         break;

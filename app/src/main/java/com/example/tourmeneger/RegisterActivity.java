@@ -56,8 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_email)){
                     Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
-                }else if(password.length() < 8){
-                    Toast.makeText(RegisterActivity.this, "Password must be at least 0 characters ", Toast.LENGTH_SHORT).show();
+                }else if(txt_password.length() < 8){
+                    Toast.makeText(RegisterActivity.this, "Password must be at least 8 characters ", Toast.LENGTH_SHORT).show();
                 }else{
                     register(txt_username, txt_email, txt_password);
                 }
