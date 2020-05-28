@@ -28,7 +28,6 @@ public class ChatActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
         viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-        viewPagerAdapter.addFragment(new GroupsFragment(), "Groups");
         viewPager2.setAdapter(viewPagerAdapter);
 
 
@@ -41,6 +40,7 @@ public class ChatActivity extends AppCompatActivity {
                     case 0:
                         tab.setText("Chats");
                         break;
+
                     case 1:
                         tab.setText("Users");
                         break;

@@ -30,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -43,12 +44,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView username;
 
     FirebaseUser firebaseUser;
-    DatabaseReference reference;
+    DatabaseReference reference, usersreference, groupsreference;
 
     CustomCalendarView customCalendarView;
-    Button btn_new_group;
+    Button btn_new_group, btn_join_to_group;
 
-
+    long howmanymembersingroup;
+    String currentGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +103,57 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        btn_join_to_group = findViewById(R.id.btn_join_to_group);
+        btn_join_to_group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestJoin();
+            }
+        });
+
+    }
+
+    private void requestJoin() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialog);
+        builder.setTitle("Enter group name");
+        final EditText groupNameField = new EditText(MainActivity.this);
+        groupNameField.setHint("SomeNameThatOnlyYouThinkIsFunny");
+        builder.setView(groupNameField);
+        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String groupName_txt = groupNameField.getText().toString();
+                if (TextUtils.isEmpty(groupName_txt)){
+                    Toast.makeText(MainActivity.this, "Write group name", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    joinToGroup(groupName_txt, firebaseUser);
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+    }
+
+    private void joinToGroup(final String groupName, FirebaseUser firebaseUser) {
+        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName).child("members");
+        groupsreference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    howmanymembersingroup=(dataSnapshot.getChildrenCount());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        groupsreference.child(String.valueOf(howmanymembersingroup)).child("id").setValue(firebaseUser.getUid());
+        usersreference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        usersreference.child("currgroup").setValue(groupName);
+
     }
 
     private void requestNewGroup() {
@@ -126,15 +179,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void crateNewGroup(String groupName_txt) {
-        reference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName_txt);
-        reference.setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
+        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName_txt);
+        groupsreference.child("creator").setValue(firebaseUser.getUid());
+        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName_txt).child("members");
+        groupsreference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_SHORT).show();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    howmanymembersingroup=(dataSnapshot.getChildrenCount());
                 }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
+        groupsreference.child(String.valueOf(howmanymembersingroup)).child("id").setValue(firebaseUser.getUid());
+        usersreference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        usersreference.child("currgroup").setValue(groupName_txt);
+
     }
 
     @Override
