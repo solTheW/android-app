@@ -5,28 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@mipmap/travel">
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/login"
-        android:text="Super Duper Mega Travel Manager"
         android:textSize="25dp"
         android:textStyle="italic" />
 
     <Button
         android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="217dp"
+        android:layout_height="68dp"
         android:layout_above="@+id/register"
-        android:text="login" />
+        android:text="Zaloguj"
+        android:background="@color/mapbox_blue"/>
 
     <Button
         android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="224dp"
+        android:layout_height="66dp"
         android:layout_alignParentBottom="true"
-        android:text="register" />
+        android:layout_marginTop="20dp"
+        android:text="Rejestracja"
+        android:background="@color/mapbox_blue"/>
 
 </LinearLayout>

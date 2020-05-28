@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@mipmap/travel">
 
     <include
         android:id="@+id/toolbar"
@@ -13,44 +14,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_below="@id/toolbar"
+        android:layout_marginTop="95dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textSize="20dp"/>
+            android:layout_width="110dp"
+            android:layout_height="102dp"
+            android:background="@mipmap/login" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_action_user"
             android:hint="E-mail"
-            app:met_floatingLabel="normal"
             android:inputType="textEmailAddress"
-            />
+            app:met_floatingLabel="normal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_action_pass"
             android:hint="Password"
-            app:met_floatingLabel="normal"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            app:met_floatingLabel="normal" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
             android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/colorAccent"/>
-
+            android:text="login"
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
+
 
 </RelativeLayout>

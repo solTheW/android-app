@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/travel"
     tools:context=".RegisterActivity">
 
     <include
@@ -14,8 +15,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_below="@id/toolbar"
+        android:layout_marginTop="123dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -23,13 +25,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create a new account"
-            android:textSize="20dp"/>
+            android:textColor="@color/mapbox_blue"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_action_namee"
             android:hint="Username"
             app:met_floatingLabel="normal" />
 
@@ -38,26 +43,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_action_user"
             android:hint="E-mail"
-            app:met_floatingLabel="normal"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            app:met_floatingLabel="normal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_action_pass"
             android:hint="Password"
-            app:met_floatingLabel="normal"
-            android:inputType="textPassword"/>
-        
+            android:inputType="textPassword"
+            app:met_floatingLabel="normal" />
+
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register"
             android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/colorAccent"/>
+            android:text="Register"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 
