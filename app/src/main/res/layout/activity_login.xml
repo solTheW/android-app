@@ -33,6 +33,7 @@
             android:drawableLeft="@drawable/ic_action_user"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:textStyle="bold"
             app:met_floatingLabel="normal" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_action_pass"
+            android:textStyle="bold"
             android:hint="Password"
             android:inputType="textPassword"
             app:met_floatingLabel="normal" />
@@ -51,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="login"
-            android:textColor="@color/colorAccent" />
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/custom_button"/>
     </LinearLayout>
 
 

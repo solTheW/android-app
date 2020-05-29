@@ -20,4 +20,5 @@
     <item
         android:id="@+id/kalendarz"
         android:title="Kalendarz"/>
+
 </menu>

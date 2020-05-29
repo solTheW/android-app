@@ -21,7 +21,8 @@
         android:layout_height="68dp"
         android:layout_above="@+id/register"
         android:text="Zaloguj"
-        android:background="@color/mapbox_blue"/>
+        android:textStyle="bold"
+        android:background="@drawable/custom_button"/>
 
     <Button
         android:id="@+id/register"
@@ -30,6 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="20dp"
         android:text="Rejestracja"
-        android:background="@color/mapbox_blue"/>
+        android:textStyle="bold"
+        android:background="@drawable/custom_button"/>
 
 </LinearLayout>
