@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,8 +20,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tourmeneger.adapter.UserAdapter;
 import com.example.tourmeneger.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,24 +38,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
-    Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toogle;
     CircleImageView profile_image;
-    TextView username;
+    TextView username, groupName;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference, usersreference, groupsreference;
 
-    CustomCalendarView customCalendarView;
     Button btn_new_group, btn_join_to_group;
-
-    long howmanymembersingroup;
-    String currentGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         username = headerView.findViewById(R.id.username);
         profile_image = headerView.findViewById(R.id.profile_image);
 
+        groupName = findViewById(R.id.groupNameView);
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
+                groupName.setText(user.getCurrgroup());
                 username.setText(user.getUsername());
                 if(user.getImageURl().equals("default")){
                     profile_image.setImageResource(R.drawable.grumpy_cat);
@@ -88,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
 
         toogle=new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toogle);
@@ -110,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 requestJoin();
             }
         });
-
     }
 
     private void requestJoin() {
@@ -127,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(MainActivity.this, "Write group name", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    joinToGroup(groupName_txt, firebaseUser);
+                    joinToGroup(groupName_txt);
                 }
             }
         });
@@ -135,13 +139,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         builder.show();
     }
 
-    private void joinToGroup(final String groupName, FirebaseUser firebaseUser) {
-        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName).child("members");
-        groupsreference.addValueEventListener(new ValueEventListener() {
+    private void joinToGroup(final String nameOfGroup) {
+        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(nameOfGroup);
+        groupsreference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    howmanymembersingroup=(dataSnapshot.getChildrenCount());
+                if (dataSnapshot.getValue() != null){
+                    dataSnapshot.child("members").getChildrenCount();
+                    groupsreference.child("members").child(firebaseUser.getUid()).child("id").setValue(firebaseUser.getUid());
+                    usersreference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+                    usersreference.child("currgroup").setValue(nameOfGroup);
                 }
             }
 
@@ -150,10 +157,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        groupsreference.child(String.valueOf(howmanymembersingroup)).child("id").setValue(firebaseUser.getUid());
-        usersreference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        usersreference.child("currgroup").setValue(groupName);
-
     }
 
     private void requestNewGroup() {
@@ -182,23 +185,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName_txt);
         groupsreference.child("creator").setValue(firebaseUser.getUid());
         groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(groupName_txt).child("members");
-        groupsreference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    howmanymembersingroup=(dataSnapshot.getChildrenCount());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        groupsreference.child(String.valueOf(howmanymembersingroup)).child("id").setValue(firebaseUser.getUid());
+        groupsreference.child(firebaseUser.getUid()).child("id").setValue(firebaseUser.getUid());
         usersreference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         usersreference.child("currgroup").setValue(groupName_txt);
-
     }
 
     @Override

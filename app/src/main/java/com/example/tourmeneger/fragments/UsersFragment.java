@@ -49,8 +49,6 @@ public class UsersFragment extends Fragment {
 
         mUsers = new ArrayList<>();
 
-        //readUsers();
-
         search_users = view.findViewById(R.id.search_users);
         search_users.addTextChangedListener(new TextWatcher() {
             @Override
