@@ -27,7 +27,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="25dp"
-            android:text="New Group" />
+            android:text="New Group"
+            />
 
         <Button
             android:id="@+id/btn_join_to_group"

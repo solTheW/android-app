@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/schedule"
-        android:title="Tour Schedule" />
-    <item
-        android:id="@+id/chat"
-        android:title="Chat" />
-    <item
-        android:id="@+id/map"
-        android:title="Map" />
+
     <item
         android:id="@+id/profile"
-        android:title="Profile" />
-
+        android:title="Profile"
+        android:icon="@drawable/ic_action_namee"/>
     <item
-        android:id="@+id/logout"
-        android:title="Logout"/>
-
+        android:id="@+id/chat"
+        android:title="Chat"
+        android:icon="@drawable/ic_action_chat"/>
+    <item
+        android:id="@+id/map"
+        android:title="Map"
+        android:icon="@drawable/ic_action_navi"/>
     <item
         android:id="@+id/kalendarz"
-        android:title="Kalendarz"/>
+        android:title="Kalendarz"
+        android:icon="@drawable/ic_action_calendar"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_action_logout"/>
+    <item
+        android:id="@+id/schedule"
+        android:title="Tour Schedule"
+        android:icon="@drawable/ic_action_schedule"/>
 
 </menu>
