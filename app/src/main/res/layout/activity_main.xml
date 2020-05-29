@@ -9,15 +9,16 @@
     android:background="@color/colorPrimary"
     android:id="@+id/drawer">
 
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:id="@+id/toolbar"/>
+            android:background="@color/colorPrimaryDark" />
 
         <Button
             android:id="@+id/btn_new_group"
@@ -39,9 +40,37 @@
             android:layout_marginTop="25dp"
             android:text="Join to group" />
 
+        <TextView
+            android:id="@+id/groupNameView"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_below="@+id/btn_join_to_group"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="15dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:text="Here should be your group name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Members: "
+            android:layout_below="@id/groupNameView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="center"
+            android:id="@+id/textViewmembers"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textViewmembers"
+            android:scrollbars="vertical" />
+
+
     </RelativeLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"

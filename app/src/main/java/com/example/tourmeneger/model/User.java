@@ -6,12 +6,14 @@ public class User {
     private String username;
     private String imageURl;
     private String search;
+    private String currgroup;
 
-    public User(String id, String username, String imageURl, String search) {
+    public User(String id, String username, String imageURl, String search, String currgroup) {
         this.id = id;
         this.username = username;
         this.imageURl = imageURl;
         this.search = search;
+        this.currgroup = currgroup;
     }
 
     public User() {
@@ -47,5 +49,13 @@ public class User {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public String getCurrgroup() {
+        return currgroup;
+    }
+
+    public void setCurrgroup(String currgroup) {
+        this.currgroup = currgroup;
     }
 }

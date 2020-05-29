@@ -79,5 +79,6 @@ class ViewPagerAdapter extends FragmentStateAdapter {
         titles.add(string);
     }
 
+    
 
 }
