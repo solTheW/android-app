@@ -20,7 +20,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/mapbox_navigation_route_layer_blue"
+        android:background="@drawable/custom_button"
         android:enabled="false"
         android:text="START"
         android:textColor="@color/mapbox_navigation_view_color_primary_text"
