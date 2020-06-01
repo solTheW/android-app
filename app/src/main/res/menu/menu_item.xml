@@ -16,7 +16,7 @@
     <item
         android:id="@+id/kalendarz"
         android:title="Kalendarz"
-        android:icon="@drawable/ic_action_calendar"/>
+        android:icon="@drawable/ic_action_kalen"/>
     <item
         android:id="@+id/logout"
         android:title="Logout"
@@ -25,5 +25,9 @@
         android:id="@+id/schedule"
         android:title="Tour Schedule"
         android:icon="@drawable/ic_action_schedule"/>
+    <item
+        android:id="@+id/koszty"
+        android:title="Oblicz Koszty"
+        android:icon="@drawable/ic_action_calculate"/>
 
 </menu>

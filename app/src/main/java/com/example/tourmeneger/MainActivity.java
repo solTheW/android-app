@@ -214,6 +214,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Wybrales Kalendarz", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, KalendarzActivity.class));
                 break;
+            case R.id.koszty:
+                Toast.makeText(this, "Wybrales obliczanie kosztow", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, Cost.class));
+                break;
         }
         drawerLayout.closeDrawers();
 
