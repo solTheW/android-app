@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AllCost"></activity>
+        <activity android:name=".weather"></activity>
+        <activity android:name=".AllCost" />
         <activity android:name=".Accommodation" />
         <activity android:name=".Fuel" />
         <activity android:name=".Cost" />

@@ -29,5 +29,10 @@
         android:id="@+id/koszty"
         android:title="Oblicz Koszty"
         android:icon="@drawable/ic_action_calculate"/>
+    <item
+        android:id="@+id/pogoda"
+        android:title="Sprawdz Pogode"
+        android:icon="@drawable/ic_weather2"
+        />
 
 </menu>

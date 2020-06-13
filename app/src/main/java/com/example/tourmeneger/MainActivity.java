@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onCallback(String value) {
                         currentgroupName = value;
 
-                        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(currentgroupName).child("members");
+//                        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(currentgroupName).child("members");
                         groupsreference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user1 = dataSnapshot.getValue(User.class);
-                myCallback.onCallback(user1.getCurrgroup());
+//                myCallback.onCallback(user1.getCurrgroup());
             }
 
             @Override
@@ -317,6 +317,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Wybrales obliczanie kosztow", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, Cost.class));
                 break;
+            case R.id.pogoda:
+                Toast.makeText(this, "Sprawdzasz pogode", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, weather.class));
         }
         drawerLayout.closeDrawers();
 
