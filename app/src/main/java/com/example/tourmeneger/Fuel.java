@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class Fuel extends AppCompatActivity {
 
     TextView tvResult;
-    EditText etNum1, etNum2, etNum3, etNum4;
+    EditText etNum1 , etNum2 , etNum3 , etNum4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +25,19 @@ public class Fuel extends AppCompatActivity {
     }
 
     public void addNumber(View v){
-        double n1,n2,n3,n4,result;
+        double n1=0,n2=0,n3=0,n4=0,result=0;
 
         n1 = Double.parseDouble(etNum1.getText().toString());
         n2 = Double.parseDouble(etNum2.getText().toString());
         n3 = Double.parseDouble(etNum3.getText().toString());
         n4 = Double.parseDouble(etNum4.getText().toString());
 
-           result = ((((n3*n2)/100)*n4)/n1);
 
-           tvResult.setText(String.valueOf(result));
+           result = ((((n3*n2)/100)*n4)/n1);
+            if(result != 0)
+            {
+                tvResult.setText(String.valueOf(result));
+            }
+
     }
 }

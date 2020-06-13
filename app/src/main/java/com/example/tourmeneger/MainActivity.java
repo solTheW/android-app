@@ -296,9 +296,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.chat:
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
                 break;
-            case R.id.schedule:
-                Toast.makeText(this, "klikłeś schedule", Toast.LENGTH_LONG).show();
-                break;
+          //  case R.id.schedule:
+          //      Toast.makeText(this, "klikłeś schedule", Toast.LENGTH_LONG).show();
+          //      break;
             case R.id.map:
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
                 break;

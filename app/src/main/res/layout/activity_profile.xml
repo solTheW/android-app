@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/profilebackground"
             android:padding="10dp">
 
@@ -23,30 +23,29 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="186dp"
-                android:layout_height="163dp"
+                android:layout_width="194dp"
+                android:layout_height="198dp"
                 android:layout_marginLeft="80dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="50dp"
                 android:elevation="6dp"
                 android:src="@drawable/grumpy_cat"
                 app:civ_border_color="#EBB700"
                 app:civ_border_width="6dp" />
 
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="49dp"
-                android:layout_marginBottom="15dp"
-                android:text="Username"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="294dp"
+        android:layout_marginBottom="15dp"
+        android:text="Username"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

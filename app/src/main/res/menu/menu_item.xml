@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_action_namee"/>
-    <item
-        android:id="@+id/chat"
-        android:title="Chat"
-        android:icon="@drawable/ic_action_chat"/>
-    <item
-        android:id="@+id/map"
-        android:title="Map"
-        android:icon="@drawable/ic_action_navi"/>
-    <item
-        android:id="@+id/kalendarz"
-        android:title="Kalendarz"
-        android:icon="@drawable/ic_action_kalen"/>
-    <item
-        android:id="@+id/logout"
-        android:title="Logout"
-        android:icon="@drawable/ic_action_logout"/>
-    <item
-        android:id="@+id/schedule"
-        android:title="Tour Schedule"
-        android:icon="@drawable/ic_action_schedule"/>
-    <item
-        android:id="@+id/koszty"
-        android:title="Oblicz Koszty"
-        android:icon="@drawable/ic_action_calculate"/>
-    <item
-        android:id="@+id/pogoda"
-        android:title="Sprawdz Pogode"
-        android:icon="@drawable/ic_weather2"
-        />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/profile"
+            android:title="Change avatar"
+            android:icon="@drawable/ic_action_namee"/>
+        <item
+            android:id="@+id/logout"
+            android:title="Logout"
+            android:icon="@drawable/ic_action_logout"/>
+    </group>
+
+    <item android:title = "Tools">
+        <menu>
+            <item
+                android:id="@+id/kalendarz"
+                android:title="Kalendarz"
+                android:icon="@drawable/ic_action_kalen"/>
+            <item
+                android:id="@+id/koszty"
+                android:title="Oblicz Koszty"
+                android:icon="@drawable/ic_action_calculate"/>
+            <item
+                android:id="@+id/pogoda"
+                android:title="Sprawdz Pogode"
+                android:icon="@drawable/ic_weather2"/>
+        </menu>
+    </item>
+    <item android:title = "Communicate">
+        <menu>
+            <item
+                android:id="@+id/map"
+                android:title="Map"
+                android:icon="@drawable/ic_action_navi"/>
+            <item
+                android:id="@+id/chat"
+                android:title="Chat"
+                android:icon="@drawable/ic_action_chat"/>
+        </menu>
+    </item>
 
 </menu>
