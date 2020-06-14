@@ -300,6 +300,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
           //      Toast.makeText(this, "klikłeś schedule", Toast.LENGTH_LONG).show();
           //      break;
             case R.id.map:
+                Toast.makeText(this, "Wybrales mapę", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
                 break;
             case R.id.profile:

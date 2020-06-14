@@ -2,6 +2,7 @@ package com.example.tourmeneger.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,14 @@ import androidx.annotation.Nullable;
 import com.example.tourmeneger.model.Events;
 import com.example.tourmeneger.R;
 
+import java.security.Signature;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MyGridAdapter extends ArrayAdapter {
     List<Date> dates;
@@ -67,10 +72,26 @@ public class MyGridAdapter extends ArrayAdapter {
         Calendar eventCalendar = Calendar.getInstance();
         ArrayList<String> arrayList = new ArrayList<>();
 
+        for(int i=0;i < events.size(); i++){
+            eventCalendar.setTime(ConvertStringToDate(events.get(i).getDATE()));
+            if(DayNo == eventCalendar.get(Calendar.DAY_OF_MONTH) && displayMonth == eventCalendar.get(Calendar.MONTH) +1 && displayYear == eventCalendar.get(Calendar.YEAR)){
+                arrayList.add(events.get(i).getEVENT());
+                EventNumber.setText("Eventy: "+arrayList.size());
+            }
+        }
         return view;
     }
 
-
+    private Date ConvertStringToDate(String eventDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date = null;
+        try{
+            date = format.parse(eventDate);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return date;
+    }
 
 
 
