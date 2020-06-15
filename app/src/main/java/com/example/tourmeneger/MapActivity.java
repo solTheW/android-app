@@ -1,13 +1,25 @@
 package com.example.tourmeneger;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.location.Geocoder;
 import android.os.Bundle;
 import java.util.List;
+import java.util.Map;
+
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.Placeholder;
+import androidx.core.app.ShareCompat;
+
 import android.widget.Toast;
 
 //classes needed to initialize map
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.mapbox.api.geocoding.v5.MapboxGeocoding;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -20,7 +32,8 @@ import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
-
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 
 //classes needed to add a marker
 import com.mapbox.geojson.Feature;
@@ -31,9 +44,14 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
+import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.visibility;
 
 //classes to calculate a route
+import com.mapbox.services.android.navigation.ui.v5.NavigationButton;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
+import com.mapbox.services.android.navigation.ui.v5.NavigationUiOptions;
+import com.mapbox.services.android.navigation.ui.v5.NavigationView;
+import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -48,7 +66,6 @@ import android.view.View;
 import android.widget.Button;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 
-
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         MapboxMap.OnMapClickListener, PermissionsListener{
     //variables for adding location player
@@ -61,7 +78,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String TAG = "DirectionsActivity";
     private NavigationMapRoute navigationMapRoute;
     //variables needed to initialize navigation
-    private  Button button;
+    private FloatingActionButton button;
+    private FloatingActionButton searchButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,8 +99,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
+
                         enableLocationComponent(style);
                         addDestinationIconSymbolLayer(style);
+
+                        initSearchFab();
 
                         mapboxMap.addOnMapClickListener(MapActivity.this);
                         button = findViewById(R.id.startButton);
@@ -98,11 +120,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 NavigationLauncher.startNavigation(MapActivity.this, options);
                             }
                         });
+
                     }
 
                 });
     }
-
+    private void initSearchFab() {
+        findViewById(R.id.fab_location_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new PlaceAutocomplete.IntentBuilder()
+                        .accessToken(Mapbox.getAccessToken() != null ? Mapbox.getAccessToken() : getString(R.string.access_token))
+                        .placeOptions(PlaceOptions.builder()
+                                .backgroundColor(Color.parseColor("#EEEEEE"))
+                                .limit(10)
+                                .build(PlaceOptions.MODE_CARDS))
+                        .build(MapActivity.this);
+                startActivityForResult(intent, 1);
+            }
+        });
+    }
     private void addDestinationIconSymbolLayer(@NonNull Style loadedMapStyle) {
         loadedMapStyle.addImage("destination-icon-id",
                 BitmapFactory.decodeResource(this.getResources(), R.drawable.mapbox_marker_icon_default));
@@ -129,8 +166,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             source.setGeoJson(Feature.fromGeometry(destinationPoint));
         }
         getRoute(originPoint, destinationPoint);
-        button.setEnabled(true);
+        button.setVisibility(View.VISIBLE);
         button.setBackgroundResource(R.color.mapbox_blue);
+
         return true;
     }
 
@@ -170,6 +208,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     }
                 });
     }
+
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         // Check if permissions are enabled and if not request
