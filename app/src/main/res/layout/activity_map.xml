@@ -8,37 +8,24 @@
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        mapbox:layout_constraintBottom_toBottomOf="parent"
-        mapbox:layout_constraintEnd_toEndOf="parent"
-        mapbox:layout_constraintStart_toStartOf="parent"
-        mapbox:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         mapbox:mapbox_cameraTargetLat="38.9098"
         mapbox:mapbox_cameraTargetLng="-77.0295"
-        mapbox:mapbox_cameraZoom="12">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_location_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:tint="@android:color/white"
-            mapbox:backgroundTint="@color/colorPrimaryDark"
-            mapbox:srcCompat="@android:drawable/ic_search_category_default" />
+        mapbox:mapbox_cameraZoom="12" >
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/startButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
+            android:layout_gravity="bottom|right"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/mapbox_blue"
+            android:enabled="false"
             android:tint="@android:color/white"
-            android:backgroundTint="@color/colorPrimaryDark"
-            mapbox:srcCompat="@drawable/ic_action_navi"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            mapbox:srcCompat="@drawable/ic_action_navi" />
     </com.mapbox.mapboxsdk.maps.MapView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
