@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         groupList = new ArrayList<>();
 
                 getCurrentGroupName(new MyCallback() {
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onCallback(String value) {
                         currentgroupName = value;
 
-//                        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(currentgroupName).child("members");
+                        groupsreference = FirebaseDatabase.getInstance().getReference("Groups").child(currentgroupName).child("members");
                         groupsreference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -178,12 +178,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     User user = snapshot.getValue(User.class);
                     for(Groups member : groupList) {
                         if(user.getId().equals(member.getId())) {
-                            mUsers.add(user);
+                            if (!firebaseUser.getUid().equals(member.getId())){
+                                mUsers.add(user);
+                            }
                         }
                     }
                 }
 
-                userAdapter = new UserAdapter(getApplicationContext(), mUsers, false);
+                userAdapter = new UserAdapter(MainActivity.this, mUsers, false);
                 recyclerView.setAdapter(userAdapter);
             }
 
@@ -200,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final EditText groupNameField = new EditText(MainActivity.this);
         groupNameField.setHint("SomeNameThatOnlyYouThinkIsFunny");
         builder.setView(groupNameField);
-        builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Join", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String groupName_txt = groupNameField.getText().toString();
@@ -246,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user1 = dataSnapshot.getValue(User.class);
-//                myCallback.onCallback(user1.getCurrgroup());
+                myCallback.onCallback(user1.getCurrgroup());
             }
 
             @Override
@@ -296,9 +298,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.chat:
                 startActivity(new Intent(MainActivity.this, ChatActivity.class));
                 break;
-          //  case R.id.schedule:
-          //      Toast.makeText(this, "klikłeś schedule", Toast.LENGTH_LONG).show();
-          //      break;
             case R.id.map:
                 Toast.makeText(this, "Wybrales mapę", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
