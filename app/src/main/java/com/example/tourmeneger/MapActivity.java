@@ -6,7 +6,6 @@ import android.os.Bundle;
 import java.util.List;
 import androidx.annotation.NonNull;
 import android.widget.Toast;
-
 //classes needed to initialize map
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -14,15 +13,11 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-
-
 //classes needed to add the location component
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.location.modes.CameraMode;
-
-
 //classes needed to add a marker
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
@@ -32,7 +27,6 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconAllowOverlap;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconIgnorePlacement;
 import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
-
 //classes to calculate a route
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
@@ -43,12 +37,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import android.util.Log;
-
 //classes needed to launch navigation UI
 import android.view.View;
-import android.widget.Button;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
-
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         MapboxMap.OnMapClickListener, PermissionsListener{
@@ -83,7 +74,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     public void onStyleLoaded(@NonNull Style style) {
                         enableLocationComponent(style);
                         addDestinationIconSymbolLayer(style);
-
                         mapboxMap.addOnMapClickListener(MapActivity.this);
                         button = findViewById(R.id.startButton);
                         button.setOnClickListener(new View.OnClickListener() {
@@ -175,12 +165,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
-            // Activate the MapboxMap LocationComponent to show user location
-            // Adding in LocationComponentOptions is also an optional parameter
             locationComponent = mapboxMap.getLocationComponent();
             locationComponent.activateLocationComponent(this, loadedMapStyle);
             locationComponent.setLocationComponentEnabled(true);
-            // Set the component's camera mode
             locationComponent.setCameraMode(CameraMode.TRACKING);
         } else {
             permissionsManager = new PermissionsManager(this);

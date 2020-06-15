@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="100dp"
             android:backgroundTint="@color/mapbox_blue"
             android:enabled="false"
             android:tint="@android:color/white"
